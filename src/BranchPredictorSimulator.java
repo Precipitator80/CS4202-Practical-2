@@ -15,8 +15,9 @@ public class BranchPredictorSimulator {
             System.exit(1);
         }
 
-        new BranchPredictorSimulator(new OneBitPredictor(512)).simulate(args[0]);
-        // new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(args[0]);
+        new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(args[0]);
+        new BranchPredictorSimulator(new OneBitPredictor(1)).simulate(args[0]);
+        new BranchPredictorSimulator(new TwoBitPredictor(1)).simulate(args[0]);
     }
 
     final int LINE_SIZE = 42; // The fixed size of each line.
@@ -82,11 +83,24 @@ public class BranchPredictorSimulator {
         }
 
         // Print the results of the simulator. Calculate the accuracy to 2 decimal places.
-        System.out.println("Number of correct guesses: " + correct);
-        System.out.println("Number of incorrect guesses: " + incorrect);
-        System.out.println("Total number of guesses: " + (correct + incorrect));
+        StringBuilder stringBuilder = new StringBuilder("Predictor Type: ");
+        stringBuilder.append(predictor.getClass().getName());
+        stringBuilder.append('\n');
+        stringBuilder.append("Number of correct guesses: ");
+        stringBuilder.append(correct);
+        stringBuilder.append('\n');
+        stringBuilder.append("Number of incorrect guesses: ");
+        stringBuilder.append(incorrect);
+        stringBuilder.append('\n');
+        stringBuilder.append("Total number of guesses: ");
+        stringBuilder.append(correct + incorrect);
+        stringBuilder.append('\n');
         DecimalFormat df = new DecimalFormat("#.##");
         String accuracy = df.format(100 * ((float) correct / (correct + incorrect)));
-        System.out.println("Accuracy: " + accuracy + "%");
+        stringBuilder.append("Accuracy: ");
+        stringBuilder.append(accuracy);
+        stringBuilder.append('%');
+        stringBuilder.append("\n---------------");
+        System.out.println(stringBuilder.toString());
     }
 }

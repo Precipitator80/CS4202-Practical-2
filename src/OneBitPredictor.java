@@ -15,10 +15,10 @@ public class OneBitPredictor extends BitPredictor {
     public boolean predict(BinaryAddress address, boolean taken) {
         // Find the previous taken value for the address and use it to make a prediction.
         int indexInTable = indexInTable(address);
-        boolean prediction = predictionTable[indexInTable];
+        boolean prediction = predictionTable[indexInTable] != 0;
 
         // Update the table with the actual value and return the prediction.
-        predictionTable[indexInTable] = taken;
+        predictionTable[indexInTable] = taken ? 1 : 0;
         return prediction;
     }
 }

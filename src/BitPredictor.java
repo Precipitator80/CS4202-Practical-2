@@ -3,7 +3,7 @@
  */
 public abstract class BitPredictor implements BranchPredictor {
     private final int TABLE_SIZE;
-    protected boolean[] predictionTable;
+    protected int[] predictionTable;
 
     /**
      * Initialises the predictor with a prediction table.
@@ -11,7 +11,7 @@ public abstract class BitPredictor implements BranchPredictor {
      */
     public BitPredictor(int TABLE_SIZE) {
         this.TABLE_SIZE = TABLE_SIZE;
-        this.predictionTable = new boolean[TABLE_SIZE];
+        this.predictionTable = new int[TABLE_SIZE];
     }
 
     /**
