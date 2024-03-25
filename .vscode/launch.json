@@ -6,6 +6,22 @@
     "configurations": [
         {
             "type": "java",
+            "name": "bwaves-100",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/bwaves100.out"
+        },
+        {
+            "type": "java",
+            "name": "leela full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/leela.out"
+        },
+        {
+            "type": "java",
             "name": "bwaves-100 home",
             "request": "launch",
             "mainClass": "BranchPredictorSimulator",

@@ -15,10 +15,12 @@ public class BranchPredictorSimulator {
             System.exit(1);
         }
 
-        new BranchPredictorSimulator(new OneBitPredictor()).simulate(args[0]);
+        new BranchPredictorSimulator(new OneBitPredictor(512)).simulate(args[0]);
+        // new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(args[0]);
     }
 
     final int LINE_SIZE = 42; // The fixed size of each line.
+    final int ADDRESS_LENGTH = 16; // The length of address strings.
     BranchPredictor predictor; // The predictor to use.
     int correct; // The number of correct guesses.
     int incorrect; // The number of incorrect guesses.
@@ -43,7 +45,6 @@ public class BranchPredictorSimulator {
 
             long fileSize = fileChannel.size();
             long numLines = fileSize / LINE_SIZE;
-
             for (long i = 0; i < numLines; i++) {
                 // Map the line to a byte buffer.
                 long position = i * LINE_SIZE;
@@ -51,15 +52,26 @@ public class BranchPredictorSimulator {
 
                 // Read from the buffer.
                 //boolean direct = buffer.get(36) == '1';
-                boolean conditional = buffer.get(38) == '1';
-                boolean taken = buffer.get(40) == '1';
+                boolean conditional = buffer.get(38) == '1'; // Whether the branch is conditional or not.
+                // Simulate branch prediction if the branch is conditional.
+                if (conditional) {
+                    // Get the address.
+                    StringBuilder lineBuilder = new StringBuilder();
+                    for (int j = 0; j < ADDRESS_LENGTH; j++) {
+                        lineBuilder.append((char) buffer.get());
+                    }
+                    BinaryAddress address = new BinaryAddress(lineBuilder.toString());
+                    boolean taken = buffer.get(40) == '1'; // Whether the branch was taken or not.
 
-                // Simulate branch prediction.
-                boolean prediction = predictor.predict(conditional);
-                if (taken == prediction) {
-                    correct++;
-                } else {
-                    incorrect++;
+                    // Make a prediction.
+                    boolean prediction = predictor.predict(address, taken);
+
+                    // Check whether the predictor was correct to update metrics.
+                    if (taken == prediction) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
                 }
 
                 // No need to explicitly close the MappedByteBuffer.
