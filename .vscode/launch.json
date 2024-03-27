@@ -14,6 +14,14 @@
         },
         {
             "type": "java",
+            "name": "leela-50000",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/leela50000.out"
+        },
+        {
+            "type": "java",
             "name": "leela full",
             "request": "launch",
             "mainClass": "BranchPredictorSimulator",

@@ -15,9 +15,16 @@ public class BranchPredictorSimulator {
             System.exit(1);
         }
 
-        new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(args[0]);
-        new BranchPredictorSimulator(new OneBitPredictor(1)).simulate(args[0]);
-        new BranchPredictorSimulator(new TwoBitPredictor(1)).simulate(args[0]);
+        String programTraceFileName = args[0];
+
+        new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(programTraceFileName);
+        for (int i = 0; i < 4; i++) {
+            int TABLE_SIZE = 512 * (int) Math.pow(2, i);
+            System.out.println("Table size: " + TABLE_SIZE);
+            System.out.println("-----");
+            new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
+        }
     }
 
     final int LINE_SIZE = 42; // The fixed size of each line.
@@ -96,9 +103,9 @@ public class BranchPredictorSimulator {
         stringBuilder.append(correct + incorrect);
         stringBuilder.append('\n');
         DecimalFormat df = new DecimalFormat("#.##");
-        String accuracy = df.format(100 * ((float) correct / (correct + incorrect)));
-        stringBuilder.append("Accuracy: ");
-        stringBuilder.append(accuracy);
+        String mispredictionRate = df.format(100 * ((float) incorrect / (correct + incorrect)));
+        stringBuilder.append("Misprediction Rate: ");
+        stringBuilder.append(mispredictionRate);
         stringBuilder.append('%');
         stringBuilder.append("\n---------------");
         System.out.println(stringBuilder.toString());
