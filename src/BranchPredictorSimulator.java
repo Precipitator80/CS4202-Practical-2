@@ -1,7 +1,9 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
+// import java.io.RandomAccessFile;
+// import java.nio.MappedByteBuffer;
+// import java.nio.channels.FileChannel;
 import java.text.DecimalFormat;
 
 /**
@@ -24,6 +26,8 @@ public class BranchPredictorSimulator {
             System.out.println("-----");
             new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
             new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new GlobalPredictor(1, TABLE_SIZE)).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new GlobalPredictor(2, TABLE_SIZE)).simulate(programTraceFileName);
         }
     }
 
@@ -47,29 +51,20 @@ public class BranchPredictorSimulator {
      */
     void simulate(String programTraceFileName) {
         // Read in lines and simulate each branch prediction.
-        // Map the file directly to memory and read each line using the known line size.
-        try (RandomAccessFile file = new RandomAccessFile(programTraceFileName, "r");
-                FileChannel fileChannel = file.getChannel()) {
+        // Using a buffered reader seems to be faster than the memory map code commented out below.
+        try (BufferedReader reader = new BufferedReader(new FileReader(programTraceFileName), LINE_SIZE)) {
+            reader.lines().forEach(line -> {
+                // BinaryAddress memoryAddress = new BinaryAddress(line.substring(17, 33));
+                // int size = Integer.parseInt(line.substring(36, 39));
+                // simulateMemoryOp(memoryAddress, size, 0);
 
-            long fileSize = fileChannel.size();
-            long numLines = fileSize / LINE_SIZE;
-            for (long i = 0; i < numLines; i++) {
-                // Map the line to a byte buffer.
-                long position = i * LINE_SIZE;
-                MappedByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, position, LINE_SIZE);
-
-                // Read from the buffer.
                 //boolean direct = buffer.get(36) == '1';
-                boolean conditional = buffer.get(38) == '1'; // Whether the branch is conditional or not.
+                boolean conditional = line.charAt(38) == '1'; // Whether the branch is conditional or not.
                 // Simulate branch prediction if the branch is conditional.
                 if (conditional) {
                     // Get the address.
-                    StringBuilder lineBuilder = new StringBuilder();
-                    for (int j = 0; j < ADDRESS_LENGTH; j++) {
-                        lineBuilder.append((char) buffer.get());
-                    }
-                    BinaryAddress address = new BinaryAddress(lineBuilder.toString());
-                    boolean taken = buffer.get(40) == '1'; // Whether the branch was taken or not.
+                    BinaryAddress address = new BinaryAddress(line.substring(0, ADDRESS_LENGTH));
+                    boolean taken = line.charAt(40) == '1'; // Whether the branch was taken or not.
 
                     // Make a prediction.
                     boolean prediction = predictor.predict(address, taken);
@@ -84,8 +79,49 @@ public class BranchPredictorSimulator {
 
                 // No need to explicitly close the MappedByteBuffer.
                 // The resources will be released when the FileChannel is closed.
+            });
+        }
+        /*
+        // Map the file directly to memory and read each line using the known line size.
+        try (RandomAccessFile file = new RandomAccessFile(programTraceFileName, "r");
+                FileChannel fileChannel = file.getChannel()) {
+        
+            long fileSize = fileChannel.size();
+            long numLines = fileSize / LINE_SIZE;
+        
+            for (long i = 0; i < numLines; i++) {
+                // Map the line to a byte buffer.
+                long position = i * LINE_SIZE;
+                MappedByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, position, LINE_SIZE);
+        
+                // Read from the buffer.
+                //boolean direct = buffer.get(36) == '1';
+                boolean conditional = buffer.get(38) == '1'; // Whether the branch is conditional or not.
+                // Simulate branch prediction if the branch is conditional.
+                if (conditional) {
+                    // Get the address.
+                    StringBuilder lineBuilder = new StringBuilder();
+                    for (int j = 0; j < ADDRESS_LENGTH; j++) {
+                        lineBuilder.append((char) buffer.get());
+                    }
+                    BinaryAddress address = new BinaryAddress(lineBuilder.toString());
+                    boolean taken = buffer.get(40) == '1'; // Whether the branch was taken or not.
+        
+                    // Make a prediction.
+                    boolean prediction = predictor.predict(address, taken);
+        
+                    // Check whether the predictor was correct to update metrics.
+                    if (taken == prediction) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+                }
+        
+                // No need to explicitly close the MappedByteBuffer.
+                // The resources will be released when the FileChannel is closed.
             }
-        } catch (IOException e) {
+        }*/ catch (IOException e) {
             System.err.println("Could not read trace file:\n" + e.getMessage());
         }
 

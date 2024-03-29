@@ -35,6 +35,14 @@
             "mainClass": "BranchPredictorSimulator",
             "projectName": "CS4202-Practical-2_6a893063",
             "args": "trace-files/bwaves100.out"
-        }
+        },
+        {
+            "type": "java",
+            "name": "leela-50000 home",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_6a893063",
+            "args": "trace-files/leela50000.out"
+        },
     ]
 }
