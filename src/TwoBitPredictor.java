@@ -14,7 +14,7 @@ public class TwoBitPredictor extends BitPredictor {
     @Override
     public boolean predict(BinaryAddress address, boolean taken) {
         // Find the previous state for the address and use it to make a prediction.
-        int indexInTable = indexInTable(address);
+        int indexInTable = indexInTable(address.address);
         int value = predictionTable[indexInTable];
         boolean prediction = (value & 2) != 0;
 

@@ -14,7 +14,7 @@ public class OneBitPredictor extends BitPredictor {
     @Override
     public boolean predict(BinaryAddress address, boolean taken) {
         // Find the previous taken value for the address and use it to make a prediction.
-        int indexInTable = indexInTable(address);
+        int indexInTable = indexInTable(address.address);
         boolean prediction = predictionTable[indexInTable] != 0;
 
         // Update the table with the actual value and return the prediction.

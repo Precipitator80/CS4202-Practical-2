@@ -28,6 +28,7 @@ public class BranchPredictorSimulator {
             new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
             new BranchPredictorSimulator(new GlobalPredictor(1, TABLE_SIZE)).simulate(programTraceFileName);
             new BranchPredictorSimulator(new GlobalPredictor(2, TABLE_SIZE)).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new GSharePredictor(TABLE_SIZE)).simulate(programTraceFileName);
         }
     }
 
