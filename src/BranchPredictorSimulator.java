@@ -1,6 +1,11 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 // import java.io.RandomAccessFile;
 // import java.nio.MappedByteBuffer;
 // import java.nio.channels.FileChannel;
@@ -13,37 +18,51 @@ public class BranchPredictorSimulator {
     public static void main(String[] args) {
         if (args.length < 1) {
             System.err.println(
-                    "Invalid arguments. Arguments must be in the form:\n ./BranchPredictorSimulator <path to trace file>");
+                    "Invalid arguments. Arguments must be in the form:\n ./BranchPredictorSimulator <path to trace file> [path to data output folder]");
             System.exit(1);
         }
 
         String programTraceFileName = args[0];
+        String outputDirectory = "output-data/";
+        if (args.length > 1) {
+            outputDirectory = args[1];
+        }
 
-        new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(programTraceFileName);
-        for (int i = 0; i < 4; i++) {
-            int TABLE_SIZE = 512 * (int) Math.pow(2, i);
+        clearCsvFiles(outputDirectory);
+
+        new BranchPredictorSimulator(new AlwaysTakenPredictor(), outputDirectory).simulate(programTraceFileName);
+        for (int i = 0; i < 10; i++) {
+            int TABLE_SIZE = 32 * (int) Math.pow(2, i);
             System.out.println("Table size: " + TABLE_SIZE);
             System.out.println("-----");
-            new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new GlobalPredictor(1, TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new GlobalPredictor(2, TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new GSharePredictor(TABLE_SIZE)).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE),
+                    outputDirectory).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE),
+                    outputDirectory).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new GlobalPredictor(1, TABLE_SIZE),
+                    outputDirectory).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new GlobalPredictor(2, TABLE_SIZE),
+                    outputDirectory).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new GSharePredictor(TABLE_SIZE),
+                    outputDirectory).simulate(programTraceFileName);
         }
     }
 
     final int LINE_SIZE = 42; // The fixed size of each line.
     final int ADDRESS_LENGTH = 16; // The length of address strings.
     BranchPredictor predictor; // The predictor to use.
+    String outputDirectory; // The output directory to use for data.
     int correct; // The number of correct guesses.
     int incorrect; // The number of incorrect guesses.
 
     /**
      * Initialises the simulator with a predictor.
      * @param predictor The predictor to use.
+     * @param outputDirectory The output directory to use for data.
      */
-    public BranchPredictorSimulator(BranchPredictor predictor) {
+    public BranchPredictorSimulator(BranchPredictor predictor, String outputDirectory) {
         this.predictor = predictor;
+        this.outputDirectory = outputDirectory;
     }
 
     /**
@@ -146,5 +165,70 @@ public class BranchPredictorSimulator {
         stringBuilder.append('%');
         stringBuilder.append("\n---------------");
         System.out.println(stringBuilder.toString());
+        exportData();
+    }
+
+    private void exportData() {
+        try {
+            if (predictor instanceof BitPredictor) {
+                int TABLE_SIZE = ((BitPredictor) predictor).TABLE_SIZE;
+                String predictorName = predictor.getClass().getName();
+                Path filePath = Paths.get(outputDirectory + predictorName + ".csv");
+                if (Files.notExists(filePath)) {
+                    filePath.toFile().createNewFile();
+                }
+
+                DecimalFormat df = new DecimalFormat("#.##");
+                String mispredictionRateString = df.format(100 * ((float) incorrect / (correct + incorrect)));
+                //float mispredictionRate = df.parse(mispredictionRateString).floatValue();
+                double mispredictionRate = Double.parseDouble(mispredictionRateString);
+
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(TABLE_SIZE);
+                stringBuilder.append(',');
+                stringBuilder.append(mispredictionRate);
+                stringBuilder.append(System.lineSeparator());
+
+                Files.write(filePath, stringBuilder.toString().getBytes(), StandardOpenOption.APPEND);
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to export simulator data:\n" + e.toString());
+        }
+    }
+
+    public static void clearCsvFiles(String outputDirectory) {
+        File directory = new File(outputDirectory);
+
+        // Check if the specified path is a directory
+        if (!directory.isDirectory()) {
+            System.out.println("Specified path is not a directory.");
+            return;
+        }
+
+        // List all files in the directory
+        File[] files = directory.listFiles();
+
+        // If the directory is empty, return
+        if (files == null || files.length == 0) {
+            System.out.println("Directory is empty.");
+            return;
+        }
+
+        // Iterate over each file in the directory
+        for (File file : files) {
+            // Check if the file is a CSV file
+            if (file.isFile() && file.getName().toLowerCase().endsWith(".csv")) {
+                try {
+                    // Delete the file
+                    if (file.delete()) {
+                        System.out.println("Deleted file: " + file.getName());
+                    } else {
+                        System.out.println("Failed to delete file: " + file.getName());
+                    }
+                } catch (SecurityException e) {
+                    System.out.println("Permission denied to delete file: " + file.getName());
+                }
+            }
+        }
     }
 }
