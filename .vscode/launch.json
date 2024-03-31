@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RunAll",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada"
+        },
+        {
+            "type": "java",
             "name": "bwaves-100",
             "request": "launch",
             "mainClass": "BranchPredictorSimulator",
@@ -22,11 +29,67 @@
         },
         {
             "type": "java",
+            "name": "bwaves full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/bwaves.out"
+        },
+        {
+            "type": "java",
+            "name": "cactusbssn full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/cactusbssn.out"
+        },
+        {
+            "type": "java",
+            "name": "exchange2 full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/exchange2.out"
+        },
+        {
+            "type": "java",
+            "name": "gcc full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/gcc.out"
+        },
+        {
+            "type": "java",
             "name": "leela full",
             "request": "launch",
             "mainClass": "BranchPredictorSimulator",
             "projectName": "CS4202-Practical-2_39b38ada",
             "args": "trace-files/leela.out"
+        },
+        {
+            "type": "java",
+            "name": "povray full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/povray.out"
+        },
+        {
+            "type": "java",
+            "name": "wrf full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/wrf.out"
+        },
+        {
+            "type": "java",
+            "name": "xz full",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_39b38ada",
+            "args": "trace-files/xz.out"
         },
         {
             "type": "java",

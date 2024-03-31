@@ -11,7 +11,9 @@ javac *.java
 
 After this, the simulator can be run with the following command:
 ```
-java BranchPredictorSimulator <programTrace.out>
+java BranchPredictorSimulator [programTrace.out] [outputFolder]
 ```
 
 programTrace.out: Path to trace file.  
+outputFolder: Path to data output folder.  
+Passing no arguments runs all the trace files in the "trace-files" folder.  
