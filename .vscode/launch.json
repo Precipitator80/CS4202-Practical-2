@@ -93,6 +93,13 @@
         },
         {
             "type": "java",
+            "name": "RunAll home",
+            "request": "launch",
+            "mainClass": "BranchPredictorSimulator",
+            "projectName": "CS4202-Practical-2_6a893063",
+        },
+        {
+            "type": "java",
             "name": "bwaves-100 home",
             "request": "launch",
             "mainClass": "BranchPredictorSimulator",
