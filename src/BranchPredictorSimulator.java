@@ -45,6 +45,8 @@ public class BranchPredictorSimulator {
     }
 
     private static String outputDirectory = "output-data/"; // The output directory to use for data.
+    private static final int MIN_TABLE_SIZE = 32;
+    private static final int MAX_TABLE_POWER = 11;
 
     /**
      * Runs all the predictor varieties for a single trace file.
@@ -57,8 +59,8 @@ public class BranchPredictorSimulator {
 
         // Run the simulator in various configurations for the program trace.
         new BranchPredictorSimulator(new AlwaysTakenPredictor(), programTraceFileName).simulate();
-        for (int i = 0; i < 12; i++) {
-            int TABLE_SIZE = 32 * (int) Math.pow(2, i);
+        for (int i = 0; i <= MAX_TABLE_POWER; i++) {
+            int TABLE_SIZE = MIN_TABLE_SIZE * (int) Math.pow(2, i);
             System.out.println("Table size: " + TABLE_SIZE);
             System.out.println("-----");
             new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE), programTraceFileName).simulate();
@@ -207,10 +209,19 @@ public class BranchPredictorSimulator {
             double mispredictionRate = Double.parseDouble(mispredictionRateString);
 
             stringBuilder.setLength(0);
-            stringBuilder.append(TABLE_SIZE);
-            stringBuilder.append(',');
-            stringBuilder.append(mispredictionRate);
-            stringBuilder.append(System.lineSeparator());
+            if (TABLE_SIZE != -1) { // Predictor with table.
+                stringBuilder.append(TABLE_SIZE);
+                stringBuilder.append(',');
+                stringBuilder.append(mispredictionRate);
+                stringBuilder.append(System.lineSeparator());
+            } else { // Constant predictor.
+                for (int i = 0; i <= MAX_TABLE_POWER; i += MAX_TABLE_POWER) {
+                    stringBuilder.append(MIN_TABLE_SIZE * (int) Math.pow(2, i));
+                    stringBuilder.append(',');
+                    stringBuilder.append(mispredictionRate);
+                    stringBuilder.append(System.lineSeparator());
+                }
+            }
 
             Files.write(filePath, stringBuilder.toString().getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
