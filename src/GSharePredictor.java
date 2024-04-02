@@ -1,3 +1,6 @@
+/**
+ * A predictor that indexes a prediction table using XOR of a global history register with the program counter address.
+ */
 public class GSharePredictor extends TwoBitPredictor {
     // Tracks the history of whether branches were taken or not by setting bits 1 (taken) or 0 (not taken).
     long globalHistoryRegister;

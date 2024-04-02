@@ -56,17 +56,20 @@ public class BranchPredictorSimulator {
         deleteFilesMatchingPattern(outputDirectory, truncatedFileName + "-.*");
 
         // Run the simulator in various configurations for the program trace.
-        new BranchPredictorSimulator(new AlwaysTakenPredictor()).simulate(programTraceFileName);
+        new BranchPredictorSimulator(new AlwaysTakenPredictor(), programTraceFileName).simulate();
         for (int i = 0; i < 12; i++) {
             int TABLE_SIZE = 32 * (int) Math.pow(2, i);
             System.out.println("Table size: " + TABLE_SIZE);
             System.out.println("-----");
-            new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new GlobalPredictor(1, TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new GlobalPredictor(2, TABLE_SIZE)).simulate(programTraceFileName);
-            new BranchPredictorSimulator(new GSharePredictor(TABLE_SIZE)).simulate(programTraceFileName);
+            new BranchPredictorSimulator(new OneBitPredictor(TABLE_SIZE), programTraceFileName).simulate();
+            new BranchPredictorSimulator(new TwoBitPredictor(TABLE_SIZE), programTraceFileName).simulate();
+            new BranchPredictorSimulator(new GlobalPredictor(1, TABLE_SIZE), programTraceFileName).simulate();
+            new BranchPredictorSimulator(new GlobalPredictor(2, TABLE_SIZE), programTraceFileName).simulate();
+            new BranchPredictorSimulator(new GSharePredictor(TABLE_SIZE), programTraceFileName).simulate();
         }
+        BranchPredictorSimulator profiledSimulator = new BranchPredictorSimulator(null, programTraceFileName);
+        profiledSimulator.predictor = new ProfiledPredictor(profiledSimulator);
+        profiledSimulator.simulate();
     }
 
     final int LINE_SIZE = 42; // The fixed size of each line.
@@ -74,20 +77,22 @@ public class BranchPredictorSimulator {
     BranchPredictor predictor; // The predictor to use.
     int correct; // The number of correct guesses.
     int incorrect; // The number of incorrect guesses.
+    String programTraceFileName; // The file name of the trace file.
 
     /**
      * Initialises the simulator with a predictor.
      * @param predictor The predictor to use.
+     * @param programTraceFileName The file name of the trace file.
      */
-    public BranchPredictorSimulator(BranchPredictor predictor) {
+    public BranchPredictorSimulator(BranchPredictor predictor, String programTraceFileName) {
         this.predictor = predictor;
+        this.programTraceFileName = programTraceFileName;
     }
 
     /**
      * Simulates branch prediction when running a specific program.
-     * @param programTraceFileName The file name of the program trace.
      */
-    void simulate(String programTraceFileName) {
+    void simulate() {
         // Read in lines and simulate each branch prediction.
         // Using a buffered reader seems to be faster than the memory map code commented out below.
         try (BufferedReader reader = new BufferedReader(new FileReader(programTraceFileName), LINE_SIZE)) {
@@ -111,7 +116,7 @@ public class BranchPredictorSimulator {
                     }
                 }
             });
-            exportData(programTraceFileName);
+            exportData();
         }
         /*
         // Map the file directly to memory and read each line using the known line size.
@@ -160,9 +165,8 @@ public class BranchPredictorSimulator {
 
     /**
      * Prints the simulator results and writes them to a file.
-     * @param programTraceFileName The file name of the program trace.
      */
-    private void exportData(String programTraceFileName) {
+    private void exportData() {
         // Print the results of the simulator. Calculate the accuracy to 2 decimal places.
         StringBuilder stringBuilder = new StringBuilder("Predictor Type: ");
         stringBuilder.append(predictor.getClass().getName());
