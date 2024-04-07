@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.19)  7 APR 2024 12:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.3.19)  7 APR 2024 14:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1229,11 +1229,7 @@ PGFPlots: reading {../output-data/wrf-GSharePredictor.csv}
 PGFPlots: reading {../output-data/wrf-GlobalPredictor1.csv}
 PGFPlots: reading {../output-data/wrf-GlobalPredictor2.csv}
 PGFPlots: reading {../output-data/wrf-ProfiledPredictor.csv}
-
-
-LaTeX Warning: Float too large for page by 2.29979pt on input line 174.
-
-[2 <./Images/2BitPredictor.png> <./Images/GSharePredictor.png>] [3]
+ [2 <./Images/2BitPredictor.png> <./Images/GSharePredictor.png>] [3]
 PGFPlots: reading {../output-data/leela-OneBitPredictor.csv}
 PGFPlots: reading {../output-data/leela-TwoBitPredictor.csv}
 PGFPlots: reading {../output-data/leela-GSharePredictor.csv}
@@ -1271,8 +1267,8 @@ PGFPlots: reading {../output-data/leela-ProfiledPredictor.csv}
 PGFPlots: reading {../output-data/povray-ProfiledPredictor.csv}
 PGFPlots: reading {../output-data/xz-ProfiledPredictor.csv}
 PGFPlots: reading {../output-data/wrf-ProfiledPredictor.csv}
-) (Main Sections/03bFindingsPartialTraces.tex
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 5.
+) (Main Sections/03bFindingsPartialTraces.tex [5]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 6.
 PGFPlots: reading {../output-data/cactusbssn10000-OneBitPredictor.csv}
 PGFPlots: reading {../output-data/cactusbssn10000-TwoBitPredictor.csv}
 PGFPlots: reading {../output-data/cactusbssn10000-GSharePredictor.csv}
@@ -1285,6 +1281,9 @@ PGFPlots: reading {../output-data/leela10000-GSharePredictor.csv}
 PGFPlots: reading {../output-data/leela10000-GlobalPredictor1.csv}
 PGFPlots: reading {../output-data/leela10000-GlobalPredictor2.csv}
 PGFPlots: reading {../output-data/leela10000-ProfiledPredictor.csv}
+ [6
+
+]
 PGFPlots: reading {../output-data/cactusbssn1000_offset-OneBitPredictor.csv}
 PGFPlots: reading {../output-data/cactusbssn1000_offset-TwoBitPredictor.csv}
 PGFPlots: reading {../output-data/cactusbssn1000_offset-GSharePredictor.csv}
@@ -1309,6 +1308,9 @@ PGFPlots: reading {../output-data/cactusbssn-GSharePredictor.csv}
 PGFPlots: reading {../output-data/cactusbssn-GlobalPredictor1.csv}
 PGFPlots: reading {../output-data/cactusbssn-GlobalPredictor2.csv}
 PGFPlots: reading {../output-data/cactusbssn-ProfiledPredictor.csv}
+ [7
+
+]
 PGFPlots: reading {../output-data/leela1000_offset-OneBitPredictor.csv}
 PGFPlots: reading {../output-data/leela1000_offset-TwoBitPredictor.csv}
 PGFPlots: reading {../output-data/leela1000_offset-GSharePredictor.csv}
@@ -1333,6 +1335,9 @@ PGFPlots: reading {../output-data/leela-GSharePredictor.csv}
 PGFPlots: reading {../output-data/leela-GlobalPredictor1.csv}
 PGFPlots: reading {../output-data/leela-GlobalPredictor2.csv}
 PGFPlots: reading {../output-data/leela-ProfiledPredictor.csv}
+ [8
+
+]
 PGFPlots: reading {../output-data/bwaves1000_offset-OneBitPredictor.csv}
 PGFPlots: reading {../output-data/bwaves1000_offset-TwoBitPredictor.csv}
 PGFPlots: reading {../output-data/bwaves1000_offset-GSharePredictor.csv}
@@ -1357,9 +1362,11 @@ PGFPlots: reading {../output-data/bwaves-GSharePredictor.csv}
 PGFPlots: reading {../output-data/bwaves-GlobalPredictor1.csv}
 PGFPlots: reading {../output-data/bwaves-GlobalPredictor2.csv}
 PGFPlots: reading {../output-data/bwaves-ProfiledPredictor.csv}
-) [5] [6] [7] [8] (Main Sections/04Evaluation.tex) (Main Sections/05Conclusion.tex) [9
+) [9
 
-] [10
+] (Main Sections/04Evaluation.tex) (Main Sections/05Conclusion.tex) [10
+
+] [11
 
 ] (main.aux)
  ***********
@@ -1373,17 +1380,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54940 strings out of 474485
- 1300357 string characters out of 5742318
- 2432998 words of memory out of 5000000
- 76147 multiletter control sequences out of 15000+600000
+ 54943 strings out of 474485
+ 1300400 string characters out of 5742318
+ 2325284 words of memory out of 5000000
+ 76149 multiletter control sequences out of 15000+600000
  572610 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,21n,96p,9870b,2407s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,21n,96p,9870b,2401s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Benjamin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk><C:/Users/Benjamin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Benjamin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Benjamin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Benjamin/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on main.pdf (10 pages, 312810 bytes).
+Output written on main.pdf (11 pages, 318398 bytes).
 PDF statistics:
- 570 PDF objects out of 1000 (max. 8388607)
- 63 named destinations out of 1000 (max. 500000)
+ 581 PDF objects out of 1000 (max. 8388607)
+ 64 named destinations out of 1000 (max. 500000)
  79 words of extra memory for PDF output out of 10000 (max. 10000000)
 

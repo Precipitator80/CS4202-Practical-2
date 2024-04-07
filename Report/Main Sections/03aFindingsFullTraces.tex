@@ -6,168 +6,168 @@ To begin, the predictors were run for the entirety of each of the trace files pr
 \begin{figure}[htbp]
     \centering
     \ref{leg:traces1} % Put the legend above the plots.
-    
+
     % GShare (High Predictor Size) < Two-Bit < One-Bit
     \subfigure[Cactus BSSN]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        %xlabel={Predictor Size (bytes)},
-        ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-        legend to name=leg:traces1 % Set this plot as reference for hte legend.
-    ]
-    \addplot table[col sep=comma] {../output-data/cactusbssn-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/cactusbssn-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/cactusbssn-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/cactusbssn-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/cactusbssn-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/cactusbssn-ProfiledPredictor.csv};
-    \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit),Profiled}
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:cactusbssn}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Table Size},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                    legend to name=leg:traces1 % Set this plot as reference for hte legend.
+                ]
+                \addplot table[col sep=comma] {../output-data/cactusbssn-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-ProfiledPredictor.csv};
+                \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit),Profiled}
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:cactusbssn}
     }
     \hfill
     % GShare (High Predictor Size) < Two-Bit < One-Bit
     \subfigure[Exchange 2]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        %xlabel={Predictor Size (bytes)},
-        %ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-    ]
-    \addplot table[col sep=comma] {../output-data/exchange2-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/exchange2-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/exchange2-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/exchange2-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/exchange2-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/exchange2-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:exchange2}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Table Size},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                ]
+                \addplot table[col sep=comma] {../output-data/exchange2-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/exchange2-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/exchange2-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/exchange2-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/exchange2-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/exchange2-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:exchange2}
     }
-    
+
     \vspace{\baselineskip} % add some vertical space between the rows
-    
+
     % GShare (High Predictor Size) < Two-Bit < One-Bit
     \subfigure[GCC]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        %xlabel={Predictor Size (bytes)},
-        ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-    ]
-    \addplot table[col sep=comma] {../output-data/gcc-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/gcc-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/gcc-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/gcc-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/gcc-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/gcc-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:gcc}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Table Size},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                ]
+                \addplot table[col sep=comma] {../output-data/gcc-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/gcc-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/gcc-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/gcc-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/gcc-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/gcc-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:gcc}
     }
     \hfill
     % GShare (High Predictor Size) < Two-Bit < One-Bit
     \subfigure[POV-Ray]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        %xlabel={Predictor Size (bytes)},
-        %ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-    ]
-    \addplot table[col sep=comma] {../output-data/povray-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/povray-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/povray-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/povray-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/povray-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/povray-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:povray}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Table Size},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                ]
+                \addplot table[col sep=comma] {../output-data/povray-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/povray-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/povray-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/povray-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/povray-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/povray-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:povray}
     }
-    
+
     \vspace{\baselineskip} % add some vertical space between the rows
 
     % GShare (High Predictor Size) < Two-Bit < One-Bit
     \subfigure[XZ]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        xlabel={Predictor Size (bytes)},
-        ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticks={32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536},
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-    ]
-    \addplot table[col sep=comma] {../output-data/xz-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/xz-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/xz-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/xz-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/xz-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/xz-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:xz}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Table Size},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticks={32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536},
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                ]
+                \addplot table[col sep=comma] {../output-data/xz-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/xz-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/xz-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/xz-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/xz-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/xz-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:xz}
     }
     \hfill
     % GShare (High Predictor Size, Just Barely) < Two-Bit < One-Bit
     \subfigure[WRF]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        xlabel={Predictor Size (bytes)},
-        %ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-    ]
-    \addplot table[col sep=comma] {../output-data/wrf-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/wrf-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/wrf-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/wrf-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/wrf-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/wrf-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:wrf}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Table Size},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                ]
+                \addplot table[col sep=comma] {../output-data/wrf-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/wrf-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/wrf-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/wrf-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/wrf-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/wrf-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:wrf}
     }
     \caption{Branch predictor performance of several program traces exhibiting common behavior}
     \label{fig:traces1}
@@ -185,27 +185,27 @@ The only exception to the performance ordering of one-bit, two-bit and GShare is
     % GShare (High Predictor Size) < Two-Bit < One-Bit (Note Constant After 32 bytes)
     \subfigure[Leela]{
         \begin{tikzpicture}
-    \begin{axis}[
-        %xlabel={Predictor Size (bytes)},
-        ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth,
-    ]
-    \addplot table[col sep=comma] {../output-data/leela-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/leela-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/leela-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/leela-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/leela-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/leela-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:leela}
+            \begin{axis}[
+                    %xlabel={Table Size},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                ]
+                \addplot table[col sep=comma] {../output-data/leela-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/leela-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/leela-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:leela}
     }
     \hfill
     \begin{minipage}[H]{0.45\textwidth}
@@ -213,59 +213,59 @@ The only exception to the performance ordering of one-bit, two-bit and GShare is
         \vspace{-10\baselineskip} % Adjust the value as needed
         \ref{leg:traces1}
     \end{minipage}
-    
+
     \vspace{\baselineskip} % add some vertical space between the rows
 
     % Two-Bit < GShare (Except at low predictor size) < One-Bit
     \subfigure[BWaves]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        xlabel={Predictor Size (bytes)},
-        ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth
-    ]
-    \addplot table[col sep=comma] {../output-data/bwaves-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:bwaves}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Table Size},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/bwaves-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:bwaves}
     }
     \hfill
     \subfigure[BWaves (Zoomed-In)]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        xlabel={Predictor Size (bytes)},
-        %ylabel={Misprediction Rate (\%)},
-        xmin=32, xmax=65536,
-        %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
-        xticklabels={64,256,1K,4K,16K,64K},
-        ymin=0.2, ymax=0.8,
-        ymajorgrids=true,
-        grid style=dashed,
-        xmode=log,
-        log basis x=2,
-        width=0.475\textwidth
-    ]
-    \addplot table[col sep=comma] {../output-data/bwaves-OneBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-TwoBitPredictor.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-GSharePredictor.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor1.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor2.csv};
-    \addplot table[col sep=comma] {../output-data/bwaves-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:bwavesZoomedIn}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Table Size},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymin=0.2, ymax=0.8,
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/bwaves-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:bwavesZoomedIn}
     }
     \caption{Branch predictor performance of several program traces exhibiting unusual behavior}
     \label{fig:traces2}
@@ -280,61 +280,61 @@ Leela's official website states that Leela is a Go playing program that uses a t
 \begin{figure}[htbp]
     \centering
     \subfigure[Always Taken Predictor Performance]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        ylabel={Misprediction Rate (\%)},
-        ymajorgrids=true,
-        grid style=dashed,
-        width=0.5\textwidth,
-        xtick={0,...,7},
-        xticklabels={BWaves, Cactus BSSN, Exchange 2, GCC, Leela, POV-Ray, XZ, WRF},
-        nodes near coords,
-        nodes near coords style={font=\scriptsize},
-        nodes near coords align={vertical},
-        xticklabel style={font=\small, rotate=45, anchor=east, align=center},
-        ybar=-0.35cm,
-        ymin=0,
-        ]
-    \addplot table[col sep=comma, x expr=0] {../output-data/bwaves-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=1] {../output-data/cactusbssn-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=2] {../output-data/exchange2-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=3] {../output-data/gcc-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=4] {../output-data/leela-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=5] {../output-data/povray-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=6] {../output-data/xz-AlwaysTakenPredictor.csv};
-    \addplot table[col sep=comma, x expr=7] {../output-data/wrf-AlwaysTakenPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:alwaysTaken}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    ylabel={Misprediction Rate (\%)},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    width=0.5\textwidth,
+                    xtick={0,...,7},
+                    xticklabels={BWaves, Cactus BSSN, Exchange 2, GCC, Leela, POV-Ray, XZ, WRF},
+                    nodes near coords,
+                    nodes near coords style={font=\scriptsize},
+                    nodes near coords align={vertical},
+                    xticklabel style={font=\small, rotate=45, anchor=east, align=center},
+                    ybar=-0.35cm,
+                    ymin=0,
+                ]
+                \addplot table[col sep=comma, x expr=0] {../output-data/bwaves-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=1] {../output-data/cactusbssn-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=2] {../output-data/exchange2-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=3] {../output-data/gcc-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=4] {../output-data/leela-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=5] {../output-data/povray-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=6] {../output-data/xz-AlwaysTakenPredictor.csv};
+                \addplot table[col sep=comma, x expr=7] {../output-data/wrf-AlwaysTakenPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:alwaysTaken}
     }
     \hfill
     \subfigure[Profiled Predictor Performance]{
-    \begin{tikzpicture}
-    \begin{axis}[
-        %ylabel={Misprediction Rate (\%)},
-        ymajorgrids=true,
-        grid style=dashed,
-        width=0.5\textwidth,
-        xtick={0,...,7},
-        xticklabels={BWaves, Cactus BSSN, Exchange 2, GCC, Leela, POV-Ray, XZ, WRF},
-        nodes near coords,
-        nodes near coords style={font=\scriptsize},
-        nodes near coords align={vertical},
-        xticklabel style={font=\small, rotate=45, anchor=east, align=center},
-        ybar=-0.35cm,
-        ymin=0,        	
-        ]
-    \addplot table[col sep=comma, x expr=0] {../output-data/bwaves-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=1] {../output-data/cactusbssn-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=2] {../output-data/exchange2-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=3] {../output-data/gcc-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=4] {../output-data/leela-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=5] {../output-data/povray-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=6] {../output-data/xz-ProfiledPredictor.csv};
-    \addplot table[col sep=comma, x expr=7] {../output-data/wrf-ProfiledPredictor.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \label{fig:profiled}
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %ylabel={Misprediction Rate (\%)},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    width=0.5\textwidth,
+                    xtick={0,...,7},
+                    xticklabels={BWaves, Cactus BSSN, Exchange 2, GCC, Leela, POV-Ray, XZ, WRF},
+                    nodes near coords,
+                    nodes near coords style={font=\scriptsize},
+                    nodes near coords align={vertical},
+                    xticklabel style={font=\small, rotate=45, anchor=east, align=center},
+                    ybar=-0.35cm,
+                    ymin=0,
+                ]
+                \addplot table[col sep=comma, x expr=0] {../output-data/bwaves-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=1] {../output-data/cactusbssn-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=2] {../output-data/exchange2-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=3] {../output-data/gcc-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=4] {../output-data/leela-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=5] {../output-data/povray-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=6] {../output-data/xz-ProfiledPredictor.csv};
+                \addplot table[col sep=comma, x expr=7] {../output-data/wrf-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:profiled}
     }
     \caption{Performance of Tableless Predictors}
     \label{fig:tablelessPredictors}
