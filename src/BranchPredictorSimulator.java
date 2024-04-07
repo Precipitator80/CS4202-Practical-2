@@ -35,6 +35,9 @@ public class BranchPredictorSimulator {
                         }
                     }
                 }
+            } else {
+                System.err.println("Could not find a folder called '" + outputDirectory
+                        + "' in the directory from which the simulator was run.");
             }
         } else {
             if (args.length > 1) {

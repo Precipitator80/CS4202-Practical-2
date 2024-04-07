@@ -16,4 +16,4 @@ java BranchPredictorSimulator [programTrace.out] [outputFolder]
 
 programTrace.out: Path to trace file.  
 outputFolder: Path to data output folder.  
-Passing no arguments runs all the trace files in the "trace-files" folder.  
+Passing no arguments runs all the trace files in the "trace-files" folder. By default, results are passed to the "output-data" folder in the same directory from which the program is run.  
