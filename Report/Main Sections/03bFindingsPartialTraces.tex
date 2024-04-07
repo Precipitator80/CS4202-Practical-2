@@ -126,8 +126,8 @@ The one-bit predictors continue to outperform the two-bit predictors for 10,000 
         \label{fig:cactusbssnPartials2}
     }
 
-    %\vspace{\baselineskip} % add some vertical space between the rows
-    %
+    \vspace{\baselineskip} % add some vertical space between the rows
+
     \subfigure[100,000 Lines]{
         \begin{tikzpicture}
             \begin{axis}[
@@ -245,8 +245,8 @@ GShare already has best results from 10,000 lines (Figure \ref{fig:leelaPartials
         \label{fig:leelaPartials2}
     }
 
-    %\vspace{\baselineskip} % add some vertical space between the rows
-    %
+    \vspace{\baselineskip} % add some vertical space between the rows
+
     \subfigure[100,000 Lines]{
         \begin{tikzpicture}
             \begin{axis}[
@@ -305,7 +305,10 @@ GShare already has best results from 10,000 lines (Figure \ref{fig:leelaPartials
 
 \clearpage
 % BWaves Partials Findings:
-% GShare's performance varies widely. Seems to stabilise at around 100,000 lines. (Check:) Of note is that 
+% GShare's performance varies widely. Seems to stabilise at around 100,000 lines.
+The partial trace files for BWaves present a range of different performance profiles (Figure \ref{fig:bwavesPartials}). The standard bit predictors seem to have equal, constant performance for 1,000 lines, before diverging to the pattern seen in the full trace file.
+
+The GShare predictor exhibits mixed performance across different trace lengths and table sizes. It follows a profile for 10,000 and 100,000 lines that is similar to the full trace file, but with a significantly less negative impact from a low table size. For 1,000 lines it follows the opposite trend, having the best performance at low table sizes before decreasing in performance for larger table sizes. These mixed results suggest that there may be instructions that present a pathological case for the GShare predictor, but that these instructions do not occur evenly throughout the entire trace.
 
 % BWaves Partials
 \begin{figure}[htbp]
@@ -360,8 +363,8 @@ GShare already has best results from 10,000 lines (Figure \ref{fig:leelaPartials
         \label{fig:bwavesPartials2}
     }
 
-    %\vspace{\baselineskip} % add some vertical space between the rows
-    %
+    \vspace{\baselineskip} % add some vertical space between the rows
+
     \subfigure[100,000 Lines]{
         \begin{tikzpicture}
             \begin{axis}[
@@ -418,11 +421,8 @@ GShare already has best results from 10,000 lines (Figure \ref{fig:leelaPartials
     \label{fig:bwavesPartials}
 \end{figure}
 
-% Comment on findings overall.
-% Profiled seems to be well suited to small programs or specific parts of larger programs (give examples). It may be worth adapting the profiled approach to predict in blocks of the full code rather than the whole program at once.
-
 % One-Bit < Two-Bit < GShare
-%\begin{figure}[H]
+%\begin{figure}[htbp]
 %    \centering
 %    \begin{tikzpicture}
 %    \begin{axis}[
@@ -452,7 +452,7 @@ GShare already has best results from 10,000 lines (Figure \ref{fig:leelaPartials
 %\end{figure}
 
 % Two-Bit < One-Bit < GShare
-%\begin{figure}[H]
+%\begin{figure}[htbp]
 %    \centering
 %    \begin{tikzpicture}
 %    \begin{axis}[

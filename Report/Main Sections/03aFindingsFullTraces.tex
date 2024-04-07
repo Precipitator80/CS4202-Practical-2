@@ -177,7 +177,7 @@ To begin, the predictors were run for the entirety of each of the trace files pr
 
 Also of note is the finding that the standard one- and two-bit predictors in Leela have a relatively constant performance from a table size of 64 (Figure \ref{fig:leela}). This is likely due to a limited number of program counter addresses used in the address space, making even low table sizes sufficient for maximum predictor performance. While the standard predictors have constant performance, GShare's performance noticeably improves with table size. This is likely due to its increasing ability to use previous branch outcomes to predict future branches.
 
-The only exception to the performance ordering of one-bit, two-bit and GShare is the BWaves trace file (Figures \ref{fig:bwaves} and \ref{fig:bwavesZoomedIn}). Here, GShare performed worse than the two-bit predictors at all table sizes tested and worse than the one-bit predictors below a table size of 256.
+The only exception to the performance ordering of one-bit, two-bit and GShare is the BWaves trace file (Figures \ref{fig:bwaves} and \ref{fig:bwavesZoomedIn}). Here, GShare performed worse than the two-bit predictors at all table sizes tested and worse than the one-bit predictors below a table size of 256. It is likely that GShare has significant address conflicts below this table size, causing a much higher misprediction rate.
 
 % Full trace files (exceptions)
 \begin{figure}[htbp]

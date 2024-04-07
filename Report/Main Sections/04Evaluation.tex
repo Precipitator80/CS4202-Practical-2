@@ -1,2 +1,9 @@
 \section{Evaluation}
-% Evaluate the success of your program against what you were asked to do.
+%%% Evaluate the success of your program against what you were asked to do.
+% Comment on findings overall.
+% Profiled seems to be well suited to small programs or specific parts of larger programs (give examples). It may be worth adapting the profiled approach to predict in blocks of the full code rather than the whole program at once.
+Overall, it seems that the predictors follow a common trend, with one-bit predictors being outperformed by two-bit predictors and the global bit predictors outperforming those without global history. However, there are some exceptions to this in smaller trace files (Figure \ref{fig:cactusbssnPartials1}).
+
+GShare seems to be most performant with a high table size for larger program traces, but can occasionally outperform other predictors even at lower trace lengths with a suitable table size (Figure \ref{fig:leelaPartials2}).
+
+Among the tableless predictors, the always taken predictor performed poorly both for whole and partial trace files (Figure \ref{fig:alwaysTaken}). The profiled predictor consistently showed the highest performance for partial trace files (Figure \ref{fig:bwavesPartials1}) but had mixed performance for full trace files. In full trace files, it frequently placed between one- and two-bit predictors in terms of performance. For the full XZ trace file, it was only beaten by GShare with the largest table size tested (Figure \ref{fig:xz}) It may be worth adapting the profiled approach to predict in small blocks of a whole trace file, rather than building its profile from the entire trace file.

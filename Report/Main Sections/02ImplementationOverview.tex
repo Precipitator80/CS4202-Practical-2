@@ -2,7 +2,7 @@
 % Describe the design of your program. Justify the decisions you made.
 The simulator implements several predictors that can be run for a given trace file. An overview of each predictor is given in Figure \ref{fig:predictors}. The one-bit, two-bit and global predictors were developed using material from lectures. The GShare predictor was developed using online resources as a guide on the concept, including the original GShare paper \cite{gshare_paper}, a lecture on branch prediction \cite{pittsburg_branch_prediction}, another university assignment \cite{gshare_assignment_edinburgh} and documentation for the Berkeley Out-of-Order Machine's branch prediction \cite{gshare_boom_core}. Running the simulator without a specified trace file will run all trace files in the \texttt{trace-files} folder. Each trace file is run with all possible predictor types and table sizes. After running one configuration, the table size and misprediction rate is exported into a \texttt{csv} file for the trace file and predictor type. These files served as graph data for the graphs in this report.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \begin{framed}
         \begin{itemize}
             \item Always Taken: Always predicts a branch to be taken.
@@ -20,7 +20,7 @@ The simulator implements several predictors that can be run for a given trace fi
 \begin{figure}[htbp]
     \centering
     \subfigure[Overview of a two-bit predictor's finite-state machine for a table entry \cite{gshare_boom_core}]{
-    \includegraphics[width=0.425\textwidth, height=0.3\textheight, keepaspectratio]{Images/2BitPredictor.png}
+        \includegraphics[width=0.425\textwidth, height=0.3\textheight, keepaspectratio]{Images/2BitPredictor.png}
         \label{fig:twoBitPredictorImage}
     }
     \hfill
