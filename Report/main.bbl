@@ -1,0 +1,171 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{gshare_paper}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5505c03f7c58139d1b403bc9fa182559}{%
+           family={McFarling},
+           familyi={M\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{5505c03f7c58139d1b403bc9fa182559}
+      \strng{fullhash}{5505c03f7c58139d1b403bc9fa182559}
+      \strng{bibnamehash}{5505c03f7c58139d1b403bc9fa182559}
+      \strng{authorbibnamehash}{5505c03f7c58139d1b403bc9fa182559}
+      \strng{authornamehash}{5505c03f7c58139d1b403bc9fa182559}
+      \strng{authorfullhash}{5505c03f7c58139d1b403bc9fa182559}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Combining Branch Predictors}
+      \field{urlday}{27}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://inst.eecs.berkeley.edu/~cs252/sp17/papers/McFarling-WRL-TN-36.pdf
+      \endverb
+      \verb{url}
+      \verb https://inst.eecs.berkeley.edu/~cs252/sp17/papers/McFarling-WRL-TN-36.pdf
+      \endverb
+    \endentry
+    \entry{pittsburg_branch_prediction}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7d7df81b841335f583df9c8ee008c142}{%
+           family={Childers},
+           familyi={C\bibinitperiod},
+           given={Bruce\bibnamedelima R.},
+           giveni={B\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{7d7df81b841335f583df9c8ee008c142}
+      \strng{fullhash}{7d7df81b841335f583df9c8ee008c142}
+      \strng{bibnamehash}{7d7df81b841335f583df9c8ee008c142}
+      \strng{authorbibnamehash}{7d7df81b841335f583df9c8ee008c142}
+      \strng{authornamehash}{7d7df81b841335f583df9c8ee008c142}
+      \strng{authorfullhash}{7d7df81b841335f583df9c8ee008c142}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Branch Prediction}
+      \field{urlday}{27}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://people.cs.pitt.edu/~childers/CS2410/slides/lect-branch-prediction.pdf
+      \endverb
+      \verb{url}
+      \verb https://people.cs.pitt.edu/~childers/CS2410/slides/lect-branch-prediction.pdf
+      \endverb
+    \endentry
+    \entry{gshare_assignment_edinburgh}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=f8c6f1b6d5a5eac8278f525b63f27cdd}{%
+           family={{University of Edinburgh School of Informatics}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{f8c6f1b6d5a5eac8278f525b63f27cdd}
+      \strng{fullhash}{f8c6f1b6d5a5eac8278f525b63f27cdd}
+      \strng{bibnamehash}{f8c6f1b6d5a5eac8278f525b63f27cdd}
+      \strng{authorbibnamehash}{f8c6f1b6d5a5eac8278f525b63f27cdd}
+      \strng{authornamehash}{f8c6f1b6d5a5eac8278f525b63f27cdd}
+      \strng{authorfullhash}{f8c6f1b6d5a5eac8278f525b63f27cdd}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Assignment 1: Understanding Branch Prediction}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.inf.ed.ac.uk/teaching/courses/car/Pracs/2017-18/Assignment1.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.inf.ed.ac.uk/teaching/courses/car/Pracs/2017-18/Assignment1.pdf
+      \endverb
+    \endentry
+    \entry{gshare_boom_core}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ed5b660c676aeae967eb21ddb259ed54}{%
+           family={{The Regents of the University of California}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{ed5b660c676aeae967eb21ddb259ed54}
+      \strng{fullhash}{ed5b660c676aeae967eb21ddb259ed54}
+      \strng{bibnamehash}{ed5b660c676aeae967eb21ddb259ed54}
+      \strng{authorbibnamehash}{ed5b660c676aeae967eb21ddb259ed54}
+      \strng{authornamehash}{ed5b660c676aeae967eb21ddb259ed54}
+      \strng{authorfullhash}{ed5b660c676aeae967eb21ddb259ed54}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Backing Predictor (BPD)}
+      \field{urlday}{27}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://docs.boom-core.org/en/latest/sections/branch-prediction/backing-predictor.html
+      \endverb
+      \verb{url}
+      \verb https://docs.boom-core.org/en/latest/sections/branch-prediction/backing-predictor.html
+      \endverb
+    \endentry
+    \entry{leela_website}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=6da62eb16f10c393e2a2b5496be6016b}{%
+           family={Pascutto},
+           familyi={P\bibinitperiod},
+           given={Gian-Carlo},
+           giveni={G\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{6da62eb16f10c393e2a2b5496be6016b}
+      \strng{fullhash}{6da62eb16f10c393e2a2b5496be6016b}
+      \strng{bibnamehash}{6da62eb16f10c393e2a2b5496be6016b}
+      \strng{authorbibnamehash}{6da62eb16f10c393e2a2b5496be6016b}
+      \strng{authornamehash}{6da62eb16f10c393e2a2b5496be6016b}
+      \strng{authorfullhash}{6da62eb16f10c393e2a2b5496be6016b}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Leela}
+      \field{urlday}{6}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.sjeng.org/leela.html
+      \endverb
+      \verb{url}
+      \verb https://www.sjeng.org/leela.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,0 +1,30 @@
+\documentclass[a4paper, 12pt]{article} % Article starts with section.
+% \documentclass[a4paper, 12pt]{report} % Report starts with chapter.
+
+% Edit these for each new project. Make sure to use "\makeatletter" in each new tex file.
+% Use the values of \title, \author and \date on a custom title page - Martin Scharrer - https://tex.stackexchange.com/questions/10130/use-the-values-of-title-author-and-date-on-a-custom-title-page - Accessed 12.09.2023
+\title{CS4202 Practical 2: Branch Predictor}
+\def\subtitle{An analysis of branch prediction strategies}
+\author{190018469}
+\date{April 2024}
+
+\input{Template/Setup}
+\begin{document}
+%\include{Template/Cover}
+%\tableofcontents
+\input{Main Sections/01Abstract}
+\input{Main Sections/02ImplementationOverview}
+\input{Main Sections/03aFindingsFullTraces}
+\input{Main Sections/03bFindingsPartialTraces}
+\clearpage
+\input{Main Sections/04Evaluation}
+\input{Main Sections/05Conclusion}
+%\newpage % Choose one of newpage and clearpage if desired. Clearpage forces any figures to be placed before it.
+\clearpage
+\printbibliography
+%\include{Main Sections/06Appendix}
+\end{document}
+% "input" does not include page break wrapping.
+% "include" includes page break wrapping.
+%TC:ignore - Starts ignoring word count.
+%TC:endignore - Ends ignoring word count.

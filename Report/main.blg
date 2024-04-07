@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'c:/Users/Benjamin/Desktop/St Andrews Files/2023 - 2024 S2/CS4202-Practical-2/Report/main.blg'
+[266] biber-MSWIN64:340> INFO - === 
+[368] Biber.pm:419> INFO - Reading 'c:/Users/Benjamin/Desktop/St Andrews Files/2023 - 2024 S2/CS4202-Practical-2/Report/main.bcf'
+[612] Biber.pm:979> INFO - Found 5 citekeys in bib section 0
+[657] Biber.pm:4419> INFO - Processing section 0
+[693] Biber.pm:4610> INFO - Looking for bibtex file 'ref.bib' for section 0
+[803] bibtex.pm:1713> INFO - LaTeX decoding ...
+[818] bibtex.pm:1519> INFO - Found BibTeX data source 'ref.bib'
+[993] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'variable = shifted' with 'variable = non-ignorable'
+[995] UCollate.pm:68> INFO - Overriding locale 'en-UK' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[996] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-UK'
+[996] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-UK'
+[1022] bbl.pm:660> INFO - Writing 'c:/Users/Benjamin/Desktop/St Andrews Files/2023 - 2024 S2/CS4202-Practical-2/Report/main.bbl' with encoding 'UTF-8'
+[1025] bbl.pm:763> INFO - Output to c:/Users/Benjamin/Desktop/St Andrews Files/2023 - 2024 S2/CS4202-Practical-2/Report/main.bbl

@@ -1,0 +1,469 @@
+\subsection{Partial Trace Files}
+To look at predictor performance over smaller parts of a trace file, three trace files were broken up into 1,000, 10,000 and 100,000 lines. Cactus BSSN was chosen as it exhibited the most common behaviour identified from the full traces, while Leela and BWaves were chosen as they exhibited behaviour out of the norm. To create the snippets, the code in Listing \ref{code:traceTruncate} was run for each trace file and snippet length.
+
+\noindent\begin{minipage}{\linewidth}
+    \begin{lstlisting}[caption={Truncating a trace to 1,000 lines with 1,000,000 offset}, label={code:traceTruncate}, frame=single]
+    $ tail -n +1000000 trace.out | head -n 1000 > trace1000_offset.out
+\end{lstlisting}
+\end{minipage}
+
+Initially, these program trace excerpts used the contents at the start of the full trace file. However, plotting the results of these showed identical results among the different trace files (Cactus BSSN and Leela shown in Figure \ref{fig:badPartials}). This suggests that all the trace files share some initialisation code of the platform from which the trace files were generated. To counter this, each snippet is offset by 1,000,000 lines from the start of the corresponding trace file.
+
+% Bad partials
+\begin{figure}[htbp]
+    \centering
+    \subfigure[Cactus BSSN]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:badPartials1}
+    }
+    \hfill
+    \subfigure[Leela]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/leela10000-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:badPartials2}
+    }
+    \caption{Predictor performance for the first 10,000 lines of Cactus BSSN and Leela}
+    \label{fig:badPartials}
+\end{figure}
+
+% Cactus BSSN Partials Findings:
+% GShare fluctuates until 10,000 lines, after which it assumes roughly its final shape. Other predictors reach this by 10,000.
+
+% Cactus BSSN Partials
+\begin{figure}[htbp]
+    \centering
+    \subfigure[1,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/cactusbssn1000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn1000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn1000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn1000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn1000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn1000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:cactusbssnPartials1}
+    }
+    \hfill
+    \subfigure[10,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn10000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:cactusbssnPartials2}
+    }
+
+    \vspace{\baselineskip} % add some vertical space between the rows
+
+    \subfigure[100,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Predictor Size (bytes)},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                    legend image post style={scale=0.7},
+                    legend style={font=\scriptsize},
+                ]
+                \addplot table[col sep=comma] {../output-data/cactusbssn100000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn100000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn100000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn100000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn100000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn100000_offset-ProfiledPredictor.csv};
+                \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit),Profiled}
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:cactusbssnPartials3}
+    }
+    \hfill
+    \subfigure[Full]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/cactusbssn-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/cactusbssn-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:cactusbssnPartials4}
+    }
+    \caption{Cactus BSSN run in parts}
+    \label{fig:cactusbssnPartials}
+\end{figure}
+
+% Leela Partials Findings:
+% Normal predictors constant in every case with comparable performance to full trace file. GShare already has best results from 10,000 lines, but only gains its final profile at around 100,000 lines.
+% Backs up previous findings. Structure of branches seems to change very little across the runtime of the full program.
+
+% Leela Partials
+\begin{figure}[htbp]
+    \centering
+    \subfigure[1,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/leela1000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela1000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela1000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela1000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/leela1000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/leela1000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:leelaPartials1}
+    }
+    \hfill
+    \subfigure[10,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/leela10000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/leela10000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:leelaPartials2}
+    }
+
+    \vspace{\baselineskip} % add some vertical space between the rows
+
+    \subfigure[100,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Predictor Size (bytes)},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                    legend image post style={scale=0.7},
+                    legend style={font=\scriptsize},
+                ]
+                \addplot table[col sep=comma] {../output-data/leela100000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela100000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela100000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela100000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/leela100000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/leela100000_offset-ProfiledPredictor.csv};
+                \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit),Profiled}
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:leelaPartials3}
+    }
+    \hfill
+    \subfigure[Full]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/leela-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/leela-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/leela-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/leela-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:leelaPartials4}
+    }
+    \caption{Leela run in parts}
+    \label{fig:leelaPartials}
+\end{figure}
+
+% BWaves Partials Findings:
+% GShare's performance varies widely. Seems to stabilise at around 100,000 lines. (Check:) Of note is that 
+
+% BWaves Partials
+\begin{figure}[htbp]
+    \centering
+    \subfigure[1,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.472\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/bwaves1000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves1000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves1000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves1000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves1000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves1000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:bwavesPartials1}
+    }
+    \hfill
+    \subfigure[10,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    %xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.472\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/bwaves10000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves10000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves10000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves10000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves10000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves10000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:bwavesPartials2}
+    }
+
+    \vspace{\baselineskip} % add some vertical space between the rows
+
+    \subfigure[100,000 Lines]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Predictor Size (bytes)},
+                    ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth
+                ]
+                \addplot table[col sep=comma] {../output-data/bwaves100000_offset-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves100000_offset-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves100000_offset-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves100000_offset-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves100000_offset-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves100000_offset-ProfiledPredictor.csv};
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:bwavesPartials3}
+    }
+    \hfill
+    \subfigure[Full]{
+        \begin{tikzpicture}
+            \begin{axis}[
+                    xlabel={Predictor Size (bytes)},
+                    %ylabel={Misprediction Rate (\%)},
+                    xmin=32, xmax=65536,
+                    %xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+                    xticklabels={64,256,1K,4K,16K,64K},
+                    ymajorgrids=true,
+                    grid style=dashed,
+                    xmode=log,
+                    log basis x=2,
+                    width=0.475\textwidth,
+                    legend image post style={scale=0.7},
+                    legend style={font=\scriptsize},
+                ]
+                \addplot table[col sep=comma] {../output-data/bwaves-OneBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-TwoBitPredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GSharePredictor.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor1.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-GlobalPredictor2.csv};
+                \addplot table[col sep=comma] {../output-data/bwaves-ProfiledPredictor.csv};
+                \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit),Profiled}
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:bwavesPartials4}
+    }
+    \caption{BWaves run in parts}
+    \label{fig:bwavesPartials}
+\end{figure}
+
+% Comment on findings overall.
+% Profiled seems to be well suited to small programs or specific parts of larger programs (give examples). It may be worth adapting the profiled approach to predict in blocks of the full code rather than the whole program at once.
+
+% One-Bit < Two-Bit < GShare
+%\begin{figure}[H]
+%    \centering
+%    \begin{tikzpicture}
+%    \begin{axis}[
+%        xlabel={Predictor Size (bytes)},
+%        ylabel={Misprediction Rate (\%)},
+%        xmin=32, xmax=65536,
+%        xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+%        ymajorgrids=true,
+%        grid style=dashed,
+%        xmode=log,
+%        log basis x=2,
+%        width=0.75\textwidth,
+%        legend pos=north west,
+%        legend image post style={scale=0.8},
+%        font=\small,
+%    ]
+%    \addplot table[col sep=comma] {../output-data/bwaves100-OneBitPredictor.csv};
+%    \addplot table[col sep=comma] {../output-data/bwaves100-TwoBitPredictor.csv};
+%    \addplot table[col sep=comma] {../output-data/bwaves100-GSharePredictor.csv};
+%    \addplot table[col sep=comma] {../output-data/bwaves100-GlobalPredictor1.csv};
+%    \addplot table[col sep=comma] {../output-data/bwaves100-GlobalPredictor2.csv};
+%    \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit)}
+%    \end{axis}
+%    \end{tikzpicture}
+%    \caption{Branch Predictor Performance (BWaves 100)}
+%    \label{fig:bwaves100}
+%\end{figure}
+
+% Two-Bit < One-Bit < GShare
+%\begin{figure}[H]
+%    \centering
+%    \begin{tikzpicture}
+%    \begin{axis}[
+%        xlabel={Predictor Size (bytes)},
+%        ylabel={Misprediction Rate (\%)},
+%        xmin=32, xmax=65536,
+%        xticklabels={32,64,128,256,512,1K,2K,4K,8K,16K,32K,64K},
+%        ymajorgrids=true,
+%        grid style=dashed,
+%        xmode=log,
+%        log basis x=2,
+%        width=0.75\textwidth
+%    ]
+%    \addplot table[col sep=comma] {../output-data/leela50000-OneBitPredictor.csv};
+%    \addplot table[col sep=comma] {../output-data/leela50000-TwoBitPredictor.csv};
+%    \addplot table[col sep=comma] {../output-data/leela50000-GSharePredictor.csv};
+%    \addplot table[col sep=comma] {../output-data/leela50000-GlobalPredictor1.csv};
+%    \addplot table[col sep=comma] {../output-data/leela50000-GlobalPredictor2.csv};
+%    \legend{One-Bit,Two-Bit,GShare,Global (One-Bit),Global (Two-Bit)}
+%    \end{axis}
+%    \end{tikzpicture}
+%    \caption{Branch Predictor Performance (Leela 50000)}
+%    \label{fig:leela50000}
+%\end{figure}
